@@ -21,3 +21,19 @@ CState& CState::operator=(const CState& rhs)
     //assignment operator
     return *this;
 }
+
+char* CState::getName() const{
+    return name;
+}
+
+
+std::istream& operator >>(std::istream& in, CState &rhs){
+    rhs.inserter(in);
+    return in;
+}
+std::istream& CState::inserter(std::istream& in){
+    name = new char[100];
+    std::cout<<"Enter the state's name\n";
+    in.getline(name, 99);
+    return in;
+}
