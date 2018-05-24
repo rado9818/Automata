@@ -10,9 +10,9 @@ class CState
         CState(const CState& other);
         CState& operator=(const CState& other);
         char* getName() const;
-        bool getisInitial() const;
-        int setIsInitial(bool) const;;
-        bool getIsFinal();
+        bool getIsInitial() const;
+        int setIsInitial(bool);
+        bool getIsFinal() const;
         int setIsFinal(bool);
         friend std::istream& operator >>(std::istream&, CState&);
         virtual std::istream& inserter(std::istream&);

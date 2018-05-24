@@ -24,6 +24,8 @@ CDeterminateFiniteAutomatonChar& CDeterminateFiniteAutomatonChar::operator=(cons
 
 std::istream& CDeterminateFiniteAutomatonChar::inserter(std::istream& in){
     CDeterminateFiniteAutomaton::inserter(in);
+
+    //enter the alphabet
     std::cout<<"Enter the number of symbols in the alphabet\n";
     in>>numSymbols;
     alphabet = new char[numSymbols];
@@ -31,8 +33,25 @@ std::istream& CDeterminateFiniteAutomatonChar::inserter(std::istream& in){
         std::cout<<"Enter the "<<i+1<<" letter: ";
         in>>alphabet[i];
     }
+
+    //enter the transitions
+    CDeterminateFiniteAutomaton::initializeTransitions(numSymbols);
+    CDeterminateFiniteAutomaton::insertTransitions(in, this);
+
     return in;
 
+}
+
+unsigned CDeterminateFiniteAutomatonChar::getNumSymbols() const{
+    return numSymbols;
+}
+
+const char* CDeterminateFiniteAutomatonChar::getAlphabet() const{
+    return alphabet;
+}
+
+char* CDeterminateFiniteAutomatonChar::getAlphabetToChar(){
+    return alphabet;
 }
 
  std::istream& operator >>(std::istream& in, CDeterminateFiniteAutomatonChar& rhs){

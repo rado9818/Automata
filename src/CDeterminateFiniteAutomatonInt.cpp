@@ -21,7 +21,13 @@ CDeterminateFiniteAutomatonInt& CDeterminateFiniteAutomatonInt::operator=(const 
     //assignment operator
     return *this;
 }
+unsigned CDeterminateFiniteAutomatonInt::getNumSymbols() const{
+    return numSymbols;
+}
 
+const int* CDeterminateFiniteAutomatonInt::getAlphabet() const{
+    return alphabet;
+}
 
 std::istream& CDeterminateFiniteAutomatonInt::inserter(std::istream& in){
     CDeterminateFiniteAutomaton::inserter(in);
@@ -36,21 +42,22 @@ std::istream& CDeterminateFiniteAutomatonInt::inserter(std::istream& in){
     }
 
     //enter the transitions
-  /*  transitions = new char**[alphabet];
-    for(unsigned i=0; i<alphabet; i++){
-        transitions = new char*[numStates];
-    }*/
-    in.ignore();
-    for(unsigned i=0; i<getNumStates(); i++){
-        for(unsigned j=0; j<numSymbols; j++){
-            std::cout<<"Enter ("<<states[i]->getName()<<", "<<alphabet[j]<<")";
-            char *transition = new char[100];
-            in.getline(transition, 99);
-        }
-    }
+    CDeterminateFiniteAutomaton::initializeTransitions(numSymbols);
+    CDeterminateFiniteAutomaton::insertTransitions(in, this);
+
     return in;
 
 }
+
+char* CDeterminateFiniteAutomatonInt::getAlphabetToChar(){
+    char *newAlphabet = new char[numSymbols];
+    for(unsigned i=0; i<numSymbols; i++){
+        newAlphabet[i] = alphabet[i]+'0';
+    }
+
+    return newAlphabet;
+}
+
 
  std::istream& operator >>(std::istream& in, CDeterminateFiniteAutomatonInt& rhs){
     rhs.inserter(in);

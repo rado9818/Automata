@@ -26,7 +26,23 @@ char* CState::getName() const{
     return name;
 }
 
+int CState::setIsInitial(bool isInitial){
+    this->isInitial = isInitial;
+    return 0;
+}
 
+int CState::setIsFinal(bool isFinal){
+    this->isFinal = isFinal;
+    return 0;
+}
+
+bool CState::getIsInitial() const{
+    return isInitial;
+}
+
+bool CState::getIsFinal() const{
+    return isFinal;
+}
 std::istream& operator >>(std::istream& in, CState &rhs){
     rhs.inserter(in);
     return in;

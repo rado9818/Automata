@@ -10,8 +10,10 @@ class CDeterminateFiniteAutomatonChar : public CDeterminateFiniteAutomaton
         virtual ~CDeterminateFiniteAutomatonChar();
         CDeterminateFiniteAutomatonChar(const CDeterminateFiniteAutomatonChar& other);
         CDeterminateFiniteAutomatonChar& operator=(const CDeterminateFiniteAutomatonChar& other);
-        char* getAlphabet() const;
+        const char* getAlphabet() const;
         int setAlphabet(char* val);
+        char* getAlphabetToChar();
+        unsigned getNumSymbols() const;
         virtual std::istream& inserter(std::istream&);
         friend std::istream& operator >>(std::istream&, CDeterminateFiniteAutomatonChar&);
     protected:
