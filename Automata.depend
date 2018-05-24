@@ -1,17 +1,15 @@
 # depslib dependency file v1.0
-1527161635 source:/Users/rado/projects/Automata/Automata/main.cpp
+1527175938 source:c:\users\rados\desktop\automata\automata\main.cpp
 	<iostream>
 
-1527161547 source:/Users/rado/projects/Automata/Automata/src/CDeterminateFiniteAutomaton.cpp
+1527176008 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomaton.cpp
 	"CDeterminateFiniteAutomaton.h"
 
-1527161677 /Users/rado/projects/Automata/Automata/include/CDeterminateFiniteAutomaton.h
+1527176025 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomaton.h
 
-1527167245 source:/Users/rado/projects/Automata/Automata/src/CDeterminateFiniteAutomatonChar.cpp
+1527176098 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomatonchar.cpp
 	"CDeterminateFiniteAutomatonChar.h"
 
-1527167244 /Users/rado/projects/Automata/Automata/include/CDeterminateFiniteAutomatonChar.h
-
-1527167131 source:/Users/rado/projects/Automata/Automata/src/CDeterminateFiniteAutomatonInt.cpp
-	"CDeterminateFiniteAutomatonInt.h"
+1527176073 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomatonchar.h
+	"CDeterminateFiniteAutomaton.h"
 

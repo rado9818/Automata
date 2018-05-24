@@ -10,9 +10,9 @@ class CState
         CState(const CState& other);
         CState& operator=(const CState& other);
         bool GetisInitial() { return isInitial; }
-        void SetisInitial(bool val) { isInitial = val; }
-        bool GetisFinal();
-        void setIsFinal(bool val);
+        int setIsInitial(bool val) { isInitial = val; }
+        bool getIsFinal();
+        int setIsFinal(bool val);
     protected:
     private:
         char *name;
