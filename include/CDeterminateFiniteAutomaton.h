@@ -24,6 +24,7 @@ class CDeterminateFiniteAutomaton
     private:
         char ***transitions;
         unsigned numStates;
+        unsigned numSymbols;
 };
 
 #endif // CDETERMINATEFINITEAUTOMATON_H

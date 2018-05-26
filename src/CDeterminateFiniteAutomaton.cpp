@@ -10,17 +10,68 @@ CDeterminateFiniteAutomaton::CDeterminateFiniteAutomaton()
 CDeterminateFiniteAutomaton::~CDeterminateFiniteAutomaton()
 {
     //dtor
+    for(unsigned i=0; i<numStates; i++){
+        if(states[i]!=NULL){
+            delete[] states[i];
+        }
+    }
+    for(unsigned i=0; i<numStates; i++){
+        for(unsigned j=0; j<numSymbols; j++){
+            if(transitions[i][j]!=NULL){
+                delete[] transitions[i][j];
+            }
+        }
+    }
+
+    if(states!=NULL){
+        delete states;
+    }
 }
 
-CDeterminateFiniteAutomaton::CDeterminateFiniteAutomaton(const CDeterminateFiniteAutomaton& other)
+CDeterminateFiniteAutomaton::CDeterminateFiniteAutomaton(const CDeterminateFiniteAutomaton& rhs)
 {
     //copy ctor
+    states = new CState*[rhs.numStates];
+    for(unsigned i=0; i<rhs.numStates; i++){
+        states[i] = rhs.states[i];
+    }
+
+
+    numStates = rhs.numStates;
+    numSymbols = rhs.numSymbols;
+    transitions = new char**[rhs.numStates];
+    for(unsigned i=0; i<rhs.numStates; i++){
+        transitions[i] = new char*[rhs.numSymbols];
+    }
+
+    for(unsigned i=0; i<rhs.numStates; i++){
+        for(unsigned j=0; j<rhs.numSymbols; j++){
+            strcpy(transitions[i][j], rhs.transitions[i][j]);
+        }
+    }
 }
 
 CDeterminateFiniteAutomaton& CDeterminateFiniteAutomaton::operator=(const CDeterminateFiniteAutomaton& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
+    states = new CState*[rhs.numStates];
+    for(unsigned i=0; i<rhs.numStates; i++){
+        states[i] = rhs.states[i];
+    }
+
+    numStates = rhs.numStates;
+    numSymbols = rhs.numSymbols;
+    transitions = new char**[rhs.numStates];
+    for(unsigned i=0; i<rhs.numStates; i++){
+        transitions[i] = new char*[rhs.numSymbols];
+    }
+
+    for(unsigned i=0; i<rhs.numStates; i++){
+        for(unsigned j=0; j<rhs.numSymbols; j++){
+            strcpy(transitions[i][j], rhs.transitions[i][j]);
+        }
+    }
     return *this;
 }
 
@@ -47,6 +98,7 @@ unsigned CDeterminateFiniteAutomaton::getNumStates() const{
 }
 
 int CDeterminateFiniteAutomaton::initializeTransitions(unsigned numSymbols){
+    this->numSymbols = numSymbols;
     transitions = new char**[numStates];
     for(unsigned i=0; i<numSymbols; i++){
         transitions[i] = new char*[numSymbols];

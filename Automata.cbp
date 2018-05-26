@@ -13,12 +13,22 @@
 				<Option compiler="gcc" />
 				<Compiler>
 					<Add option="-g" />
+					<Add directory="include" />
 				</Compiler>
 			</Target>
 		</Build>
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="include/CDeterminateFiniteAutomaton.h" />
+		<Unit filename="include/CDeterminateFiniteAutomatonChar.h" />
+		<Unit filename="include/CDeterminateFiniteAutomatonInt.h" />
+		<Unit filename="include/CState.h" />
+		<Unit filename="main.cpp" />
+		<Unit filename="src/CDeterminateFiniteAutomaton.cpp" />
+		<Unit filename="src/CDeterminateFiniteAutomatonChar.cpp" />
+		<Unit filename="src/CDeterminateFiniteAutomatonInt.cpp" />
+		<Unit filename="src/CState.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

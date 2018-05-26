@@ -8,6 +8,9 @@ CDeterminateFiniteAutomatonInt::CDeterminateFiniteAutomatonInt()
 CDeterminateFiniteAutomatonInt::~CDeterminateFiniteAutomatonInt()
 {
     //dtor
+    if(alphabet!=NULL){
+        delete[] alphabet;
+    }
 }
 
 CDeterminateFiniteAutomatonInt::CDeterminateFiniteAutomatonInt(const CDeterminateFiniteAutomatonInt& other)
