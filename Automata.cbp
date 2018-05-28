@@ -20,6 +20,7 @@
 		<Compiler>
 			<Add option="-Wall" />
 		</Compiler>
+		<Unit filename="file.txt" />
 		<Unit filename="include/CDeterminateFiniteAutomaton.h" />
 		<Unit filename="include/CDeterminateFiniteAutomatonChar.h" />
 		<Unit filename="include/CDeterminateFiniteAutomatonInt.h" />

@@ -16,12 +16,14 @@ int main()
     int readFrom;
     cout<<"Choose the input type:\n\t1 - Console\n\t2/or any number != 1/ - File\n";
     cin>>readFrom;
+
     if(readFrom!=READ_FROM_CONSOLE){
         cin.ignore();
         cin.clear();
-        ifstream file("file.txt");
-        stream = &file;
+        ifstream *file = new ifstream("C:\\Users\\rados\\Desktop\\Automata\\Automata\\file.txt");
+        stream = file;
     }
+
     do{
         cout<<"Select you alphabet type:\n\t1 - Numbers\n\t2 - Chars\n";
         *stream>>automataType;
@@ -34,5 +36,6 @@ int main()
 
     *stream>>*automata;
 
+    cout<<*automata;
     return 0;
 }

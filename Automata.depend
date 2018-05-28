@@ -1,18 +1,18 @@
 # depslib dependency file v1.0
-1527345946 source:c:\users\rados\desktop\automata\automata\main.cpp
+1527530534 source:c:\users\rados\desktop\automata\automata\main.cpp
 	<iostream>
 	<fstream>
 	"CDeterminateFiniteAutomaton.h"
 	"CDeterminateFiniteAutomatonInt.h"
 	"CDeterminateFiniteAutomatonChar.h"
 
-1527347208 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomaton.cpp
+1527530821 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomaton.cpp
 	"CDeterminateFiniteAutomaton.h"
 	<iostream>
 	<cstring>
 	<cassert>
 
-1527347717 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomaton.h
+1527530489 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomaton.h
 	<iostream>
 	"CState.h"
 
@@ -29,9 +29,9 @@
 	"CDeterminateFiniteAutomaton.h"
 	<iostream>
 
-1527205052 source:c:\users\rados\desktop\automata\automata\src\cstate.cpp
+1527530864 source:c:\users\rados\desktop\automata\automata\src\cstate.cpp
 	"CState.h"
 
-1527205052 c:\users\rados\desktop\automata\automata\include\cstate.h
+1527530775 c:\users\rados\desktop\automata\automata\include\cstate.h
 	<iostream>
 

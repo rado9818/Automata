@@ -17,8 +17,11 @@ class CDeterminateFiniteAutomaton
         virtual char* getAlphabetToChar() = 0;
         virtual CDeterminateFiniteAutomaton& operator=(const CDeterminateFiniteAutomaton& other);
         friend std::istream& operator >>(std::istream&, CDeterminateFiniteAutomaton&);
+        friend std::ostream& operator <<(std::ostream&, CDeterminateFiniteAutomaton&);
         virtual std::istream& inserter(std::istream&);
+        virtual std::ostream& extractor(std::ostream&);
         virtual std::istream& insertTransitions(std::istream&, CDeterminateFiniteAutomaton*);
+        bool testWord(const char *) const;
     protected:
         CState **states;
     private:

@@ -3,6 +3,8 @@
 CState::CState()
 {
     //ctor
+    isInitial = false;
+    isFinal = false;
 }
 
 CState::~CState()
@@ -47,9 +49,21 @@ std::istream& operator >>(std::istream& in, CState &rhs){
     rhs.inserter(in);
     return in;
 }
+
+std::ostream& operator <<(std::ostream& out, CState &rhs){
+    rhs.extractor(out);
+    return out;
+}
 std::istream& CState::inserter(std::istream& in){
     name = new char[100];
     std::cout<<"Enter the state's name\n";
     in.getline(name, 99);
     return in;
+}
+
+std::ostream& CState::extractor(std::ostream& out){
+    out<<"State's name: "<<name<<std::endl;
+    out<<"Is state initial: "<<(isInitial ? "Yes" : "No")<<std::endl;
+    out<<"Is state final: "<<(isFinal ? "Yes" : "No")<<std::endl<<std::endl;
+    return out;
 }

@@ -16,6 +16,8 @@ class CState
         int setIsFinal(bool);
         friend std::istream& operator >>(std::istream&, CState&);
         virtual std::istream& inserter(std::istream&);
+        friend std::ostream& operator <<(std::ostream&, CState&);
+        virtual std::ostream& extractor(std::ostream&);
     protected:
     private:
         char *name;

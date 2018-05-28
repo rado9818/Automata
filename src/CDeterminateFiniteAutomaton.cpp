@@ -150,3 +150,27 @@ CState& CDeterminateFiniteAutomaton::getStateFromName(const char *name) const{
     CState *s = new CState();
     return *s;
 }
+
+ std::ostream& operator <<(std::ostream& out, CDeterminateFiniteAutomaton& rhs){
+    rhs.extractor(out);
+    return out;
+}
+
+std::ostream& CDeterminateFiniteAutomaton::extractor(std::ostream& out){
+    out<<"\nAutomata configuration:\n";
+    for(unsigned i=0; i<getNumStates(); i++){
+        for(unsigned j=0; j<getNumSymbols(); j++){
+            out<<transitions[i][j]<<"\t";
+        }
+        out<<std::endl<<std::endl;
+    }
+    for(unsigned i=0; i<getNumStates(); i++){
+        out<<*states[i]<<std::endl;
+    }
+    return out;
+}
+
+bool CDeterminateFiniteAutomaton::testWord(const char *word) const{
+
+    return false;
+}
