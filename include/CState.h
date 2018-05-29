@@ -5,10 +5,12 @@
 class CState
 {
     public:
-        CState();
+        CState(unsigned);
         virtual ~CState();
         CState(const CState& other);
         CState& operator=(const CState& other);
+        unsigned getId() const;
+        int setId(unsigned);
         char* getName() const;
         bool getIsInitial() const;
         int setIsInitial(bool);
@@ -20,6 +22,7 @@ class CState
         virtual std::ostream& extractor(std::ostream&);
     protected:
     private:
+        unsigned id;
         char *name;
         bool isInitial;
         bool isFinal;

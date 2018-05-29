@@ -1,8 +1,9 @@
 #include "CState.h"
 
-CState::CState()
+CState::CState(unsigned id)
 {
     //ctor
+    this->id = id;
     isInitial = false;
     isFinal = false;
 }
@@ -22,6 +23,15 @@ CState& CState::operator=(const CState& rhs)
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
     return *this;
+}
+
+unsigned CState::getId() const{
+    return id;
+}
+
+int CState::setId(unsigned id){
+    this->id = id;
+    return 0;
 }
 
 char* CState::getName() const{

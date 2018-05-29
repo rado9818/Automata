@@ -6,13 +6,13 @@
 	"CDeterminateFiniteAutomatonInt.h"
 	"CDeterminateFiniteAutomatonChar.h"
 
-1527530821 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomaton.cpp
+1527601560 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomaton.cpp
 	"CDeterminateFiniteAutomaton.h"
 	<iostream>
 	<cstring>
 	<cassert>
 
-1527530489 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomaton.h
+1527601545 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomaton.h
 	<iostream>
 	"CState.h"
 
@@ -29,9 +29,9 @@
 	"CDeterminateFiniteAutomaton.h"
 	<iostream>
 
-1527530864 source:c:\users\rados\desktop\automata\automata\src\cstate.cpp
+1527601643 source:c:\users\rados\desktop\automata\automata\src\cstate.cpp
 	"CState.h"
 
-1527530775 c:\users\rados\desktop\automata\automata\include\cstate.h
+1527601643 c:\users\rados\desktop\automata\automata\include\cstate.h
 	<iostream>
 

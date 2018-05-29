@@ -81,7 +81,7 @@ std::istream& CDeterminateFiniteAutomaton::inserter(std::istream& in){
     in.ignore();
     states = new CState*[numStates];
     for(unsigned i=0; i<numStates; i++){
-        states[i] = new CState();
+        states[i] = new CState(i);
         in>>*states[i];
     }
     return in;
@@ -123,15 +123,28 @@ std::istream& CDeterminateFiniteAutomaton::insertTransitions(std::istream& in, C
     CState& s = getStateFromName(transition);
     s.setIsInitial(true);
 
+    if(transition!=NULL){
+        if(transition != NULL){
+            delete[] transition;
+        }
+    }
+
     std::cout<<"Enter the number of final states\n";
     unsigned numFinalStates;
     in>>numFinalStates;
     in.ignore();
+    in.clear();
     for(unsigned i=0; i<numFinalStates; i++){
-        std::cout<<"Enter the "<<i+1<<" final state\n";
-        in.getline(transition, 99);
-        s = getStateFromName(transition);
-        s.setIsFinal(true);
+        std::cout<<"Enter the "<<i+1<<" final state"<<std::endl;
+        char *finalState = new char[100];
+        memset(finalState, sizeof(finalState), '\0');
+        in.getline(finalState, 99);
+
+        CState& s1 = getStateFromName(finalState);
+        s1.setIsFinal(true);
+        if(finalState!=NULL){
+            delete[] finalState;
+        }
     }
     return in;
 }
@@ -141,15 +154,37 @@ int CDeterminateFiniteAutomaton::addTransition(char* transition, unsigned x, uns
     return 0;
 }
 
-CState& CDeterminateFiniteAutomaton::getStateFromName(const char *name) const{
+CState& CDeterminateFiniteAutomaton::getStateFromName(char *name) const{
+    char *newChar = new char[strlen(name)];
+    char *p = name;
+    unsigned cnt=0;
+    while(*p!='\0'){
+        newChar[cnt++] = *p;
+        p++;
+    }
+    newChar[cnt] = '\0';
+
+
     for(unsigned i=0; i<numStates; i++){
-        if(name==states[i]->getName()){
+        //strcmp returns 0 if the c strings match
+        if(strcmp(newChar, states[i]->getName())==0){
             return *states[i];
         }
     }
-    CState *s = new CState();
+    CState *s = new CState(0);
     return *s;
 }
+
+CState& CDeterminateFiniteAutomaton::getInitialState() const{
+    for(unsigned i=0; i<numStates; i++){
+        if(states[i]->getIsInitial()){
+            return *states[i];
+        }
+    }
+    CState *s = new CState(0);
+    return *s;
+}
+
 
  std::ostream& operator <<(std::ostream& out, CDeterminateFiniteAutomaton& rhs){
     rhs.extractor(out);
@@ -170,7 +205,36 @@ std::ostream& CDeterminateFiniteAutomaton::extractor(std::ostream& out){
     return out;
 }
 
-bool CDeterminateFiniteAutomaton::testWord(const char *word) const{
+CState& CDeterminateFiniteAutomaton::getNextState(CState &stateNow, char*name){
+    char *newChar = new char[strlen(name)];
+    char *p = name;
+    unsigned cnt=0;
+    while(*p!='\0'){
+        newChar[cnt++] = *p;
+        p++;
+    }
+    newChar[cnt] = '\0';
+
+    for(unsigned i=0; i<getNumSymbols(); i++){
+        if(strcmp(transitions[stateNow.getId()][i], name)==0){
+            return getStateFromName(transitions[stateNow.getId()][i]);
+        }
+
+    }
+
+    CState *s = new CState(1);
+    return *s;
+
+}
+
+
+bool CDeterminateFiniteAutomaton::testWord(char *word) const{
+    CState &s = getInitialState();
+    char *p = word;
+    while(*p!='\0'){
+      //  s = getNextState(s, *p);
+        p++;
+    }
 
     return false;
 }
