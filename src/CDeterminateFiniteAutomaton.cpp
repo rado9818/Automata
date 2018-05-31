@@ -130,7 +130,7 @@ std::istream& CDeterminateFiniteAutomaton::insertTransitions(std::istream& in, C
         s->setIsInitial(true, states, numStates, __LINE__);
     }
     catch(AutomatonException &e){
-        std::cerr<<e.what();
+        std::cerr<<typeid(e).name()<<": "<<e.what()<<std::endl;
     }
 
     if(transition!=NULL){
@@ -147,11 +147,20 @@ std::istream& CDeterminateFiniteAutomaton::insertTransitions(std::istream& in, C
     for(unsigned i=0; i<numFinalStates; i++){
         std::cout<<"Enter the "<<i+1<<" final state"<<std::endl;
         char *finalState = new char[50];
-        memset(finalState, sizeof(finalState), '\0');
-        in.getline(finalState, 49);
 
-        CState *s1 = getStateFromName(finalState);
-        s1->setIsFinal(true);
+        bool isStateFound = true;
+        while(isStateFound){
+            memset(finalState, sizeof(finalState), '\0');
+            in.getline(finalState, 49);
+            try{
+                CState *s1 = getStateFromName(finalState);
+                s1->setIsFinal(true);
+                isStateFound = false;
+            }
+            catch(AutomatonStateException &e){
+                std::cerr<<typeid(e).name()<<": "<<e.what()<<std::endl;
+            }
+        }
         if(finalState!=NULL){
             delete[] finalState;
         }
@@ -180,6 +189,8 @@ CState* CDeterminateFiniteAutomaton::getStateFromName(char *name) const{
             return states[i];
         }
     }
+    throw AutomatonStateException(newChar, __LINE__);
+
     CState *s = new CState(0);
     return s;
 }

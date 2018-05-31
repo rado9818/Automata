@@ -2,7 +2,9 @@
 #define CDETERMINATEFINITEAUTOMATON_H
 #include<iostream>
 #include<iomanip>
+#include<typeinfo>
 #include "CState.h"
+#include "AutomatonStateException.h"
 class CDeterminateFiniteAutomaton
 {
     public:
