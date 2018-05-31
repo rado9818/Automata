@@ -61,3 +61,28 @@ char* CDeterminateFiniteAutomatonChar::getAlphabetToChar(){
     rhs.inserter(in);
     return in;
 }
+
+bool CDeterminateFiniteAutomatonChar::testWord(char *word) const{
+    CState *s = getInitialState();
+    char *p = word;
+    while(*p!='\0'){
+        unsigned letterPosition = getLetterPosition(*p);
+        if(letterPosition != -1){
+            s = CDeterminateFiniteAutomaton::getNextState(s->getId(), letterPosition);
+          //  std::cout<<s->getName()<<std::endl;
+        }
+        p++;
+    }
+
+    return s->getIsFinal();
+}
+
+
+unsigned CDeterminateFiniteAutomatonChar::getLetterPosition(char symbolNeeded) const{
+    for(unsigned i=0; i<getNumSymbols(); i++){
+        if(alphabet[i]==symbolNeeded){
+            return i;
+        }
+    }
+    return -1;
+}

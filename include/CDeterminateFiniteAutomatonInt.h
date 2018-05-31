@@ -16,7 +16,8 @@ class CDeterminateFiniteAutomatonInt : public CDeterminateFiniteAutomaton
         int setNumSymbols(unsigned);
         virtual std::istream& inserter(std::istream&);
         friend std::istream& operator >>(std::istream&, CDeterminateFiniteAutomatonInt&);
-
+        bool testWord(char *) const;
+        unsigned getLetterPosition(int) const;
     protected:
     private:
         unsigned numSymbols;

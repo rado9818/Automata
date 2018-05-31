@@ -38,7 +38,12 @@ char* CState::getName() const{
     return name;
 }
 
-int CState::setIsInitial(bool isInitial){
+int CState::setIsInitial(bool isInitial, CState** states, unsigned numStates, unsigned line) throw (AutomatonException){
+    for(unsigned i=0; i<numStates; i++){
+        if(states[i]->getIsInitial()){
+            throw AutomatonException(states[i]->getName(), line);
+        }
+    }
     this->isInitial = isInitial;
     return 0;
 }

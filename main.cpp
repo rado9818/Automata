@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include <fstream>
 #include "CDeterminateFiniteAutomaton.h"
 #include "CDeterminateFiniteAutomatonInt.h"
@@ -37,5 +38,15 @@ int main()
     *stream>>*automata;
 
     cout<<*automata;
+
+    char word[100];
+    do{
+        cout<<"Enter a word in the automata. Type \"end\" to exit\n";
+        cin.getline(word, 99);
+        if(strcmp(word, "end")==0){
+            break;
+        }
+        cout<<"The word \""<<word<<"\" is "<<(automata->testWord(word) ? "":"NOT ")<<"recognized!"<<endl;
+    }while(strcmp(word, "end")!=0);
     return 0;
 }

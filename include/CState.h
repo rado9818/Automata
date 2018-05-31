@@ -1,7 +1,7 @@
 #ifndef CSTATE_H
 #define CSTATE_H
 #include <iostream>
-
+#include "AutomatonException.h"
 class CState
 {
     public:
@@ -13,7 +13,7 @@ class CState
         int setId(unsigned);
         char* getName() const;
         bool getIsInitial() const;
-        int setIsInitial(bool);
+        int setIsInitial(bool, CState**, unsigned, unsigned) throw (AutomatonException);
         bool getIsFinal() const;
         int setIsFinal(bool);
         friend std::istream& operator >>(std::istream&, CState&);
