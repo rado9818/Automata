@@ -18,7 +18,7 @@ class CDeterminateFiniteAutomaton
         int initializeTransitions(unsigned);
         int addTransition(char*, unsigned, unsigned);
         virtual unsigned getNumSymbols() const = 0;
-        virtual char* getAlphabetToChar() = 0;
+        virtual char** getAlphabetToChar() = 0;
         virtual CDeterminateFiniteAutomaton& operator=(const CDeterminateFiniteAutomaton& other);
         friend std::istream& operator >>(std::istream&, CDeterminateFiniteAutomaton&);
         friend std::ostream& operator <<(std::ostream&, CDeterminateFiniteAutomaton&);
@@ -27,7 +27,8 @@ class CDeterminateFiniteAutomaton
         virtual std::istream& insertTransitions(std::istream&, CDeterminateFiniteAutomaton*);
         CState* getNextState(unsigned, unsigned) const;
         virtual bool testWord(char *) const = 0;
-
+        CDeterminateFiniteAutomaton* operator|(CDeterminateFiniteAutomaton&);
+        CDeterminateFiniteAutomaton* operator^(CDeterminateFiniteAutomaton&);
     protected:
         CState **states;
     private:

@@ -31,7 +31,11 @@ std::istream& CDeterminateFiniteAutomatonChar::inserter(std::istream& in){
     //enter the alphabet
     std::cout<<"Enter the number of symbols in the alphabet\n";
     in>>numSymbols;
-    alphabet = new char[numSymbols];
+    alphabet = new char*[numSymbols];
+    for(unsigned i=0; i<numSymbols; i++){
+        alphabet[i] = new char[50];
+    }
+
     for(unsigned i=0; i<numSymbols; i++){
         std::cout<<"Enter the "<<i+1<<" letter: ";
         in>>alphabet[i];
@@ -49,11 +53,11 @@ unsigned CDeterminateFiniteAutomatonChar::getNumSymbols() const{
     return numSymbols;
 }
 
-const char* CDeterminateFiniteAutomatonChar::getAlphabet() const{
+char** CDeterminateFiniteAutomatonChar::getAlphabet() const{
     return alphabet;
 }
 
-char* CDeterminateFiniteAutomatonChar::getAlphabetToChar(){
+char** CDeterminateFiniteAutomatonChar::getAlphabetToChar(){
     return alphabet;
 }
 
@@ -66,7 +70,7 @@ bool CDeterminateFiniteAutomatonChar::testWord(char *word) const{
     CState *s = getInitialState();
     char *p = word;
     while(*p!='\0'){
-        unsigned letterPosition = getLetterPosition(*p);
+        unsigned letterPosition = getLetterPosition(p);
         if(letterPosition != -1){
             s = CDeterminateFiniteAutomaton::getNextState(s->getId(), letterPosition);
           //  std::cout<<s->getName()<<std::endl;
@@ -78,7 +82,7 @@ bool CDeterminateFiniteAutomatonChar::testWord(char *word) const{
 }
 
 
-unsigned CDeterminateFiniteAutomatonChar::getLetterPosition(char symbolNeeded) const{
+unsigned CDeterminateFiniteAutomatonChar::getLetterPosition(char* symbolNeeded) const{
     for(unsigned i=0; i<getNumSymbols(); i++){
         if(alphabet[i]==symbolNeeded){
             return i;

@@ -111,7 +111,7 @@ int CDeterminateFiniteAutomaton::initializeTransitions(unsigned numSymbols){
 
 std::istream& CDeterminateFiniteAutomaton::insertTransitions(std::istream& in, CDeterminateFiniteAutomaton* rhs){
     in.ignore();
-    char *alphabet = rhs->getAlphabetToChar();
+    char **alphabet = rhs->getAlphabetToChar();
     for(unsigned i=0; i<getNumStates(); i++){
         for(unsigned j=0; j<rhs->getNumSymbols(); j++){
             std::cout<<"Enter ("<<states[i]->getName()<<", "<<alphabet[j]<<"): ";
@@ -214,7 +214,7 @@ CState* CDeterminateFiniteAutomaton::getInitialState() const{
 std::ostream& CDeterminateFiniteAutomaton::extractor(std::ostream& out){
     out<<"\nAutomata configuration:\n";
     out<<std::setw(8)<<"   |";
-    char *alphabet = getAlphabetToChar();
+    char **alphabet = getAlphabetToChar();
     for(unsigned i=0; i<getNumSymbols(); i++){
         out<<std::setw(6)<<alphabet[i]<<"\t";
     }
@@ -239,4 +239,19 @@ std::ostream& CDeterminateFiniteAutomaton::extractor(std::ostream& out){
 
 CState* CDeterminateFiniteAutomaton::getNextState(unsigned stateId, unsigned letterPos) const{
     return getStateFromName( transitions[stateId][letterPos]);
+}
+
+CDeterminateFiniteAutomaton* CDeterminateFiniteAutomaton::operator|(CDeterminateFiniteAutomaton& rhs){
+    CDeterminateFiniteAutomaton *automataUnition = this;
+
+    return automataUnition;
+}
+
+CDeterminateFiniteAutomaton* CDeterminateFiniteAutomaton::operator^(CDeterminateFiniteAutomaton& rhs){
+    CDeterminateFiniteAutomaton *automataAdditional = &rhs;
+    for(unsigned i=0; i<automataAdditional->getNumStates(); i++){
+        automataAdditional->states[i]->setIsFinal(!automataAdditional->states[i]->getIsFinal());
+    }
+
+    return automataAdditional;
 }

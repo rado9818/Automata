@@ -12,7 +12,7 @@ class CDeterminateFiniteAutomatonInt : public CDeterminateFiniteAutomaton
         const int* getAlphabet() const;
         int setAlphabet(int*);
         unsigned getNumSymbols() const;
-        virtual char* getAlphabetToChar();
+        virtual char** getAlphabetToChar();
         int setNumSymbols(unsigned);
         virtual std::istream& inserter(std::istream&);
         friend std::istream& operator >>(std::istream&, CDeterminateFiniteAutomatonInt&);

@@ -52,10 +52,24 @@ std::istream& CDeterminateFiniteAutomatonInt::inserter(std::istream& in){
 
 }
 
-char* CDeterminateFiniteAutomatonInt::getAlphabetToChar(){
-    char *newAlphabet = new char[numSymbols];
+char** CDeterminateFiniteAutomatonInt::getAlphabetToChar(){
+    char **newAlphabet = new char*[numSymbols];
     for(unsigned i=0; i<numSymbols; i++){
-        newAlphabet[i] = alphabet[i]+'0';
+        char *newSymbol = new char[50];
+        int sym = alphabet[i];
+        unsigned cnt = 0;
+        if(sym==0){
+            newSymbol[cnt++] = '0';
+        }
+        else{
+            while(sym>0){
+                newSymbol[cnt++] = (sym%10)+'0';
+                sym/=10;
+            }
+        }
+
+        newSymbol[cnt] = '\0';
+        newAlphabet[i] = newSymbol;
     }
 
     return newAlphabet;

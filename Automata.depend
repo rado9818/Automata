@@ -1,5 +1,5 @@
 # depslib dependency file v1.0
-1527779830 source:c:\users\rados\desktop\automata\automata\main.cpp
+1527788834 source:c:\users\rados\desktop\automata\automata\main.cpp
 	<iostream>
 	<cstring>
 	<fstream>
@@ -7,29 +7,29 @@
 	"CDeterminateFiniteAutomatonInt.h"
 	"CDeterminateFiniteAutomatonChar.h"
 
-1527783902 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomaton.cpp
+1527788113 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomaton.cpp
 	"CDeterminateFiniteAutomaton.h"
 	<iostream>
 	<cstring>
 	<cassert>
 
-1527784690 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomaton.h
+1527788051 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomaton.h
 	<iostream>
 	<iomanip>
 	<typeinfo>
 	"CState.h"
 	"AutomatonStateException.h"
 
-1527779888 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomatonchar.cpp
+1527786389 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomatonchar.cpp
 	"CDeterminateFiniteAutomatonChar.h"
 
-1527779888 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomatonchar.h
+1527786353 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomatonchar.h
 	"CDeterminateFiniteAutomaton.h"
 
-1527703812 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomatonint.cpp
+1527786980 source:c:\users\rados\desktop\automata\automata\src\cdeterminatefiniteautomatonint.cpp
 	"CDeterminateFiniteAutomatonInt.h"
 
-1527701530 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomatonint.h
+1527786266 c:\users\rados\desktop\automata\automata\include\cdeterminatefiniteautomatonint.h
 	"CDeterminateFiniteAutomaton.h"
 	<iostream>
 
