@@ -32,7 +32,7 @@ int main()
         *stream>>automataType;
         if(automataType==AUTOMATA_INT){
             automata = new CDeterminateFiniteAutomatonInt();
-            newAutomata = new CDeterminateFiniteAutomatonInt();
+            newAutomata = new CDeterminateFiniteAutomatonChar();
         }else if(automataType==AUTOMATA_CHAR){
             automata = new CDeterminateFiniteAutomatonChar();
             newAutomata = new CDeterminateFiniteAutomatonChar();
@@ -48,7 +48,7 @@ int main()
     cout<<*automata;
 
     cout<<"\n\n\nhere is a new automata: \n";
-    CDeterminateFiniteAutomaton *automataUnition = *automata^*newAutomata;
+    CDeterminateFiniteAutomaton *automataUnition = *automata|*newAutomata;
     cout<<*automataUnition<<endl;
 
     char word[100];

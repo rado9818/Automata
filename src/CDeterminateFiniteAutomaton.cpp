@@ -97,6 +97,30 @@ unsigned CDeterminateFiniteAutomaton::getNumStates() const{
     return numStates;
 }
 
+int CDeterminateFiniteAutomaton::setNumStates(unsigned numStates){
+    this->numStates = numStates;
+    return 0;
+}
+
+CState** CDeterminateFiniteAutomaton::setStates(CState** s, unsigned numStates){
+    states = new CState*[numStates];
+    for(unsigned i=0; i<numStates; i++){
+        std::cout<<"setting states!!!\n";
+        std::cout<<*s[i];
+
+        states[i] = s[i];
+    }
+    return 0;
+}
+
+int CDeterminateFiniteAutomaton::addState(CState *s, unsigned pos){
+    std::cout<<"~!!adding\n";
+    std::cout<<*s<<std::endl;
+    states[pos] = s;
+    return 0;
+}
+
+
 int CDeterminateFiniteAutomaton::initializeTransitions(unsigned numSymbols){
     this->numSymbols = numSymbols;
     transitions = new char**[30];
@@ -204,6 +228,10 @@ CState* CDeterminateFiniteAutomaton::getInitialState() const{
     CState *s = new CState(0);
     return s;
 }
+CState** CDeterminateFiniteAutomaton::getStates() const{
+    return states;
+}
+
 
 
  std::ostream& operator <<(std::ostream& out, CDeterminateFiniteAutomaton& rhs){
@@ -242,8 +270,102 @@ CState* CDeterminateFiniteAutomaton::getNextState(unsigned stateId, unsigned let
 }
 
 CDeterminateFiniteAutomaton* CDeterminateFiniteAutomaton::operator|(CDeterminateFiniteAutomaton& rhs){
-    CDeterminateFiniteAutomaton *automataUnition = this;
+    CDeterminateFiniteAutomaton *automataUnition = &rhs;
 
+    char** alphabet1 = this->getAlphabetToChar();
+    char** alphabet2 = rhs.getAlphabetToChar();
+
+    CState** states1 = this->getStates();
+    CState** states2 = rhs.getStates();
+
+
+    unsigned numStates = this->getNumStates()*rhs.getNumStates();
+    unsigned newNumSymbols = this->getNumSymbols()*rhs.getNumSymbols();
+
+
+    char** newAlphabet = new char*[numSymbols];
+    char***newTransitions = new char**[numStates];
+    char***newTransitionsTable = new char**[numStates*newNumSymbols];
+    for(int i=0; i<numStates; i++){
+        newTransitionsTable[i] = new char*[newNumSymbols];
+    }
+
+
+    for(unsigned i=0; i<numStates; i++){
+        newTransitions[i] = new char*[newNumSymbols];
+    }
+
+    unsigned letterPos = 0;
+    CState** newStatesArr = new CState*[numStates*newNumSymbols];
+
+
+    for(unsigned i=0; i<this->getNumSymbols(); i++){
+        for(unsigned j=0; j<rhs.getNumSymbols(); j++){
+            CState* stateToGo1;
+            CState* stateToGo2;
+
+            unsigned stateIdCnt = 1;
+            unsigned stateAddingPos = 0;
+            unsigned pos=0;
+            unsigned transRow = 0;
+
+            for(unsigned is=0; is<this->getNumStates(); is++){
+                stateToGo1 = this->getNextState(is, i);
+
+                for(unsigned isj=0; isj<rhs.getNumStates(); isj++){
+
+                    stateToGo2 = rhs.getNextState(isj, j);
+
+                    char *newState = new char[strlen(states[is]->getName()) + strlen(", ") + strlen(states[isj]->getName()) + 1];
+                    strcpy(newState, states[is]->getName());
+                    strcat(newState, ", ");
+                    strcat(newState, states[isj]->getName());
+
+                   // std::cout<<"state "<<states[is]->getName()<<" "<<states[isj]->getName()<<std::endl;
+
+                    newStatesArr[stateAddingPos++] = new CState(stateIdCnt++, newState);
+
+                    newTransitions[pos++][letterPos] = newState;
+
+                    char *newTransition = new char[strlen(stateToGo1->getName()) + strlen(", ") + strlen(stateToGo2->getName()) + 1];
+                    strcpy(newTransition, stateToGo1->getName());
+                    strcat(newTransition, ", ");
+                    strcat(newTransition, stateToGo2->getName());
+
+                   // std::cout<<"trans "<<newTransition<<" addin at "<<transRow<<" "<<letterPos<<std::endl;
+                    newTransitionsTable[transRow++][letterPos] = newTransition;
+
+                }
+            }
+
+
+            char *newSybol = new char[strlen(alphabet1[i]) + strlen(", ") + strlen(alphabet2[j]) + 1];
+            strcpy(newSybol, alphabet1[i]);
+            strcat(newSybol, ", ");
+            strcat(newSybol, alphabet2[j]);
+
+            newAlphabet[letterPos] = newSybol;
+       //     std::cout<<alphabet1[i]<<", "<<alphabet2[j]<<std::endl;
+            letterPos++;
+
+        }
+
+    }
+
+
+    automataUnition->setNumStates(numStates);
+    automataUnition->setNumSymbols(newNumSymbols);
+
+    automataUnition->setStates(newStatesArr, numStates);
+    automataUnition->setAlphabet(newAlphabet, newNumSymbols);
+    automataUnition->setTranstions(newTransitionsTable, numStates, newNumSymbols);
+   /* for(unsigned i=0; i<this->getNumStates(); i++){
+        for(unsigned j=0; j<rhs.getNumStates(); j++){
+            std::cout<<states1[i]->getName()<<", "<<states2[j]->getName()<<std::endl;
+        }
+
+    }
+*/
     return automataUnition;
 }
 
@@ -255,3 +377,31 @@ CDeterminateFiniteAutomaton* CDeterminateFiniteAutomaton::operator^(CDeterminate
 
     return automataAdditional;
 }
+
+
+int CDeterminateFiniteAutomaton::setTranstions(char*** transtions, unsigned numStates, unsigned numSymbols){
+
+    this->numStates = numStates;
+    this->numSymbols = numSymbols;
+
+    this->transitions = new char**[numStates];
+    for(unsigned i=0; i<numStates; i++){
+        this->transitions[i] = new char*[numSymbols];
+    }
+
+    for(unsigned i=0; i<this->numStates; i++){
+        for(unsigned j=0; j<this->numSymbols; j++){
+            this->transitions[i][j] = new char[50];
+        }
+    }
+
+
+    for(unsigned i=0; i<this->numStates; i++){
+        for(unsigned j=0; j<this->numSymbols; j++){
+            strcpy(this->transitions[i][j], transtions[i][j]);
+        }
+    }
+
+    return 0;
+}
+

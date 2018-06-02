@@ -8,6 +8,17 @@ CState::CState(unsigned id)
     isFinal = false;
 }
 
+CState::CState(unsigned id, char* name)
+{
+    //ctor
+    this->id = id;
+    this->name = new char[strlen(name)+1];
+    strcpy(this->name, name);
+
+    isInitial = false;
+    isFinal = false;
+}
+
 CState::~CState()
 {
     //dtor

@@ -25,6 +25,26 @@ CDeterminateFiniteAutomatonChar& CDeterminateFiniteAutomatonChar::operator=(cons
     return *this;
 }
 
+int CDeterminateFiniteAutomatonChar::setAlphabet(char** alphabet, unsigned numSymbols){
+    this->alphabet = new char*[numSymbols];
+    for(unsigned i=0; i<numSymbols; i++){
+        this->alphabet[i] = new char[50];
+        strcpy(this->alphabet[i], alphabet[i]);
+    }
+    return 0;
+}
+/*
+int CDeterminateFiniteAutomatonChar::setNumSymbols(unsigned numSymbols){
+    this->numSymbols = numSymbols;
+    return 0;
+}*/
+
+int CDeterminateFiniteAutomatonChar::setNumSymbols(unsigned numSymbols){
+    this->numSymbols = numSymbols;
+    return 0;
+}
+
+
 std::istream& CDeterminateFiniteAutomatonChar::inserter(std::istream& in){
     CDeterminateFiniteAutomaton::inserter(in);
 

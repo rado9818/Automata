@@ -96,6 +96,17 @@ bool CDeterminateFiniteAutomatonInt::testWord(char *word) const{
     return s->getIsFinal();
 }
 
+/*
+int CDeterminateFiniteAutomatonInt::setNumSymbols(unsigned numSymbols){
+    this->numSymbols = numSymbols;
+    return 0;
+}*/
+
+int CDeterminateFiniteAutomatonInt::setNumSymbols(unsigned numSymbols){
+    this->numSymbols = numSymbols;
+    return 0;
+}
+
 unsigned CDeterminateFiniteAutomatonInt::getLetterPosition(int symbolNeeded) const{
     for(unsigned i=0; i<getNumSymbols(); i++){
         if(alphabet[i]==symbolNeeded){
@@ -103,4 +114,10 @@ unsigned CDeterminateFiniteAutomatonInt::getLetterPosition(int symbolNeeded) con
         }
     }
     return -1;
+}
+
+
+int CDeterminateFiniteAutomatonInt::setAlphabet(char**alphabet, unsigned a){
+
+    return 0;
 }

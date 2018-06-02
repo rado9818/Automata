@@ -6,6 +6,7 @@ class CState
 {
     public:
         CState(unsigned);
+        CState(unsigned, char*);
         virtual ~CState();
         CState(const CState& other);
         CState& operator=(const CState& other);

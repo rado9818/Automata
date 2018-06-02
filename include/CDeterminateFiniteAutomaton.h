@@ -5,6 +5,7 @@
 #include<typeinfo>
 #include "CState.h"
 #include "AutomatonStateException.h"
+
 class CDeterminateFiniteAutomaton
 {
     public:
@@ -13,10 +14,16 @@ class CDeterminateFiniteAutomaton
         CDeterminateFiniteAutomaton(const CDeterminateFiniteAutomaton& other);
         unsigned getNumStates() const;
         int setNumStates(unsigned);
+        virtual int setNumSymbols(unsigned) = 0;
+        CState** setStates(CState**, unsigned);
+        CState** getStates() const;
+        virtual int setAlphabet(char**, unsigned) = 0;
+        int addState(CState *, unsigned);
         CState* getStateFromName(char *) const;
         CState* getInitialState() const;
         int initializeTransitions(unsigned);
         int addTransition(char*, unsigned, unsigned);
+        int setTranstions(char***, unsigned, unsigned);
         virtual unsigned getNumSymbols() const = 0;
         virtual char** getAlphabetToChar() = 0;
         virtual CDeterminateFiniteAutomaton& operator=(const CDeterminateFiniteAutomaton& other);

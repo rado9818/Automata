@@ -11,9 +11,10 @@ class CDeterminateFiniteAutomatonInt : public CDeterminateFiniteAutomaton
         CDeterminateFiniteAutomatonInt& operator=(const CDeterminateFiniteAutomatonInt& other);
         const int* getAlphabet() const;
         int setAlphabet(int*);
+        int setAlphabet(char**, unsigned);
+        int setNumSymbols(unsigned);
         unsigned getNumSymbols() const;
         virtual char** getAlphabetToChar();
-        int setNumSymbols(unsigned);
         virtual std::istream& inserter(std::istream&);
         friend std::istream& operator >>(std::istream&, CDeterminateFiniteAutomatonInt&);
         bool testWord(char *) const;
