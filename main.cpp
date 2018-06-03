@@ -40,16 +40,20 @@ int main()
     }while(automataType!=AUTOMATA_INT && automataType!=AUTOMATA_CHAR);
 
     *stream>>*automata;
-    stream = new ifstream("C:\\Users\\rados\\Desktop\\Automata\\Automata\\file.txt");
-    int tst;
-    *stream>>tst;
-    *stream>>*newAutomata;
+
+
+    //newAutomata = new CDeterminateFiniteAutomaton(*automata);
+   // stream = new ifstream("C:\\Users\\rados\\Desktop\\Automata\\Automata\\file.txt");
+   // int tst;
+   // *stream>>tst;
+  //  *stream>>*newAutomata;
 
     cout<<*automata;
 
+    /*
     cout<<"\n\n\nhere is a new automata: \n";
     CDeterminateFiniteAutomaton *automataUnition = *automata|*newAutomata;
-    cout<<*automataUnition<<endl;
+    cout<<*automataUnition<<endl;*/
 
     char word[100];
     do{

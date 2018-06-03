@@ -22,17 +22,31 @@ CState::CState(unsigned id, char* name)
 CState::~CState()
 {
     //dtor
+    if(name!=NULL){
+        delete[] name;
+    }
 }
 
 CState::CState(const CState& other)
 {
     //copy ctor
+    if(&other!=NULL){
+        if(other.getName()!=NULL){
+            name = new char[strlen(other.getName())+1];
+            strcpy(this->name, other.getName());
+        }
+    }
 }
 
 CState& CState::operator=(const CState& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
-    //assignment operator
+    if(&rhs!=NULL){
+        if(rhs.getName()!=NULL){
+            name = new char[strlen(rhs.getName())+1];
+            strcpy(this->name, rhs.getName());
+        }
+    }
     return *this;
 }
 
