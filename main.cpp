@@ -50,11 +50,11 @@ int main()
 
     cout<<*automata;
 
-    /*
-    cout<<"\n\n\nhere is a new automata: \n";
-    CDeterminateFiniteAutomaton *automataUnition = *automata|*newAutomata;
-    cout<<*automataUnition<<endl;*/
 
+   /* cout<<"\n\n\nhere is a new automata: \n";
+    CDeterminateFiniteAutomaton *automataUnition = *automata|*automata;
+    cout<<*automataUnition<<endl;
+*/
     char word[100];
     do{
         cout<<"Enter a word in the automata. Type \"end\" to exit\n";

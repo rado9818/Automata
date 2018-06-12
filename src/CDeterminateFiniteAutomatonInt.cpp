@@ -3,6 +3,8 @@
 CDeterminateFiniteAutomatonInt::CDeterminateFiniteAutomatonInt()
 {
     //ctor
+    numSymbols=0;
+    alphabet = NULL;
 }
 
 CDeterminateFiniteAutomatonInt::~CDeterminateFiniteAutomatonInt()
@@ -13,15 +15,26 @@ CDeterminateFiniteAutomatonInt::~CDeterminateFiniteAutomatonInt()
     }
 }
 
-CDeterminateFiniteAutomatonInt::CDeterminateFiniteAutomatonInt(const CDeterminateFiniteAutomatonInt& other)
+CDeterminateFiniteAutomatonInt::CDeterminateFiniteAutomatonInt(const CDeterminateFiniteAutomatonInt& rhs)
 {
     //copy ctor
+    numSymbols = rhs.numSymbols;
+    alphabet = new int[rhs.numSymbols];
+    for(unsigned i=0; i<numSymbols; i++){
+        alphabet[i] = rhs.alphabet[i];
+    }
 }
 
 CDeterminateFiniteAutomatonInt& CDeterminateFiniteAutomatonInt::operator=(const CDeterminateFiniteAutomatonInt& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
+
+    numSymbols = rhs.numSymbols;
+    alphabet = new int[rhs.numSymbols];
+    for(unsigned i=0; i<numSymbols; i++){
+        alphabet[i] = rhs.alphabet[i];
+    }
     return *this;
 }
 unsigned CDeterminateFiniteAutomatonInt::getNumSymbols() const{

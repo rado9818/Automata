@@ -3,6 +3,8 @@
 CDeterminateFiniteAutomatonChar::CDeterminateFiniteAutomatonChar()
 {
     //ctor
+    numSymbols=0;
+    alphabet = NULL;
 }
 
 CDeterminateFiniteAutomatonChar::~CDeterminateFiniteAutomatonChar()
@@ -13,15 +15,27 @@ CDeterminateFiniteAutomatonChar::~CDeterminateFiniteAutomatonChar()
     }
 }
 
-CDeterminateFiniteAutomatonChar::CDeterminateFiniteAutomatonChar(const CDeterminateFiniteAutomatonChar& other)
+CDeterminateFiniteAutomatonChar::CDeterminateFiniteAutomatonChar(const CDeterminateFiniteAutomatonChar& rhs)
 {
     //copy ctor
+    numSymbols = rhs.numSymbols;
+    alphabet = new char*[rhs.numSymbols];
+    for(unsigned i=0; i<numSymbols; i++){
+        this->alphabet[i] = new char[50];
+        strcpy(alphabet[i], rhs.alphabet[i]);
+    }
 }
 
 CDeterminateFiniteAutomatonChar& CDeterminateFiniteAutomatonChar::operator=(const CDeterminateFiniteAutomatonChar& rhs)
 {
     if (this == &rhs) return *this; // handle self assignment
     //assignment operator
+    numSymbols = rhs.numSymbols;
+    alphabet = new char*[rhs.numSymbols];
+    for(unsigned i=0; i<numSymbols; i++){
+        this->alphabet[i] = new char[50];
+        strcpy(alphabet[i], rhs.alphabet[i]);
+    }
     return *this;
 }
 

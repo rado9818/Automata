@@ -209,9 +209,6 @@ CState* CDeterminateFiniteAutomaton::getStateFromName(char *name) const{
         }
     }
     throw AutomatonStateException(newChar, __LINE__);
-
-    CState *s = new CState(0);
-    return s;
 }
 
 CState* CDeterminateFiniteAutomaton::getInitialState() const{
